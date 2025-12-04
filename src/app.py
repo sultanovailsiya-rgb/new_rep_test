@@ -25,6 +25,15 @@ def add():
         return 'a и b - НЕ числа'
     return str(a + b)
 
+@app.route('/max_number', methods=['GET'])
+def max_number():
+    try:
+        a = float(request.args.get('a'))
+        b = float(request.args.get('b'))
+    except (TypeError, ValueError):
+        return 'a и b - НЕ числа'
+    return max(a, b)
+
 
 @app.route('/api', methods=['GET', 'POST'])
 def api():
