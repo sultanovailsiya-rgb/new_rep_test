@@ -64,5 +64,13 @@ class FlaskAppTests(unittest.TestCase):
         self.assertEqual(r.status_code, 200)
         self.assertEqual(r.data, b'5.0')
 
+    def test_max_number_valide(self):
+        r = self.app.get('/max_number?a=10&b=5')
+        self.assertEqual(r.data, b'10')
+        
+    def test_max_number_not_valid(self):
+        r = self.app.get('/max_number?a=abc&b=5')
+        self.assertEqual(r.data, b'a \xd0\xb8 b - \xd0\x9d\xd0\x95 \xd1\x87\xd0\xb8\xd1\x81\xd0\xbb\xd0\xb0')
+
 if __name__ == '__main__':
     unittest.main()
