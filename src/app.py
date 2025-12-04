@@ -32,7 +32,7 @@ def max_number():
         b = float(request.args.get('b'))
     except (TypeError, ValueError):
         return 'a и b - НЕ числа'
-    return max(a, b)
+    return str(max(a, b))
 
 
 @app.route('/api', methods=['GET', 'POST'])
